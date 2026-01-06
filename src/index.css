@@ -1,0 +1,532 @@
+/* =========================================================
+   1. FONT IMPORT
+   ========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* =========================================================
+   2. CSS VARIABLES (COLORS, TYPOGRAPHY)
+   ========================================================= */
+:root {
+  --font-main: "Inter", system-ui, sans-serif;
+
+  --fs-title: 46px;
+  --fs-title-mobile: 32px;
+  --fs-body: 15px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --lh-title: 1.15;
+  --lh-body: 1.6;
+
+  --ls-tight: -0.6px;
+  --ls-normal: -0.2px;
+
+  --accent-purple: #cfa9ff;
+}
+
+/* =========================================================
+   3. RESET & GLOBAL STYLES
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* =========================================================
+   4. PAGE BACKGROUND (THEMES)
+   ========================================================= */
+.page-bg {
+  min-height: 100vh;
+}
+
+.page-bg.dark {
+  background:
+    radial-gradient(circle at top, #2b2b44, #0b0b12),
+    repeating-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 6px);
+  color: #fff;
+}
+
+.page-bg.light {
+  background: #f6f7fb;
+  color: #111;
+}
+
+/* =========================================================
+   5. LAYOUT
+   ========================================================= */
+.container {
+  max-width: 980px;
+  margin: auto;
+  padding: 28px 20px 60px;
+}
+
+/* =========================================================
+   6. HEADER
+   ========================================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+}
+
+.logo-svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   7. THEME TOGGLE
+   ========================================================= */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-bg.dark .theme-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.page-bg.light .theme-toggle {
+  background: linear-gradient(180deg, #2a2a38, #1e1e2b);
+  color: #f4f4f6;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   8. TITLE & TEXT ANIMATIONS
+   ========================================================= */
+.title {
+  text-align: center;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-tight);
+  margin: 38px 0 30px;
+}
+
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
+  animation: typing 2.2s steps(22, end), blink 0.7s infinite;
+}
+
+.fade {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 2.3s;
+}
+
+/* =========================================================
+   9. TEXTAREA
+   ========================================================= */
+.textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.page-bg.dark .textarea {
+  background: #1c1c2b;
+  color: #fff;
+}
+
+.page-bg.light .textarea {
+  background: #fff;
+  color: #111;
+}
+
+/* =========================================================
+   10. OPTIONS
+   ========================================================= */
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 4px 30px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   11. STATS CARDS
+   ========================================================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.card {
+  position: relative;
+  padding: 22px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Content above pattern */
+.card-value,
+.card-label {
+  position: relative;
+  z-index: 2;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  opacity: 0.18;
+  filter: blur(2px);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pattern overlay layer */
+/* .card::after {
+  width: 180px;
+  height: 180px;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.4s ease;
+  animation: floatShape 12s ease-in-out infinite;
+} */
+.card::after {
+  background-size: 120px 120px, 200% 200%;
+  background-position: 0 0, 0% 0%;
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+  animation: patternMove 18s linear infinite;
+}
+
+
+@keyframes patternMove {
+  from {
+    background-position: 0 0, 0% 0%;
+  }
+  to {
+    background-position: 0 0, 100% 100%;
+  }
+}
+
+
+.card:hover::after {
+  opacity: 0.12;
+  filter: blur(1px);
+}
+
+/* -------------------- */
+.card-value {
+  font-size: 44px;
+  font-weight: var(--fw-bold);
+}
+
+.card-label {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Card colors */
+.purple {
+  background: linear-gradient(135deg, #cfa9ff, #b690ff);
+  color: #1b0f2e;
+}
+
+.orange {
+  background: linear-gradient(135deg, #ffb000, #ff9800);
+  color: #2e1b00;
+}
+
+.peach {
+  background: linear-gradient(135deg, #ff8b66, #ff7a55);
+  color: #2e130b;
+}
+
+/* .purple::before {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -40px;
+  right: -40px;
+} */
+.purple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+
+  width: 200px;
+  height: 200px;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35) 0 18%, transparent 19%),
+    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.35) 0 18%, transparent 19%),
+    radial-gradient(circle at 20% 60%, rgba(255, 255, 255, 0.35) 0 18%, transparent 19%),
+    radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.35) 0 18%, transparent 19%);
+
+  background-size: 80px 80px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* .orange::before {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -50px;
+  left: -50px;
+} */
+.orange::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+
+  width: 180px;
+  height: 180px;
+
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(255, 255, 255, 0.35) 0px,
+      rgba(255, 255, 255, 0.35) 40px,
+      transparent 40px,
+      transparent 80px),
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.35) 0px,
+      rgba(255, 255, 255, 0.35) 40px,
+      transparent 40px,
+      transparent 80px);
+
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* .peach::before {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -30px;
+  right: -30px;
+} */
+.peach::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -35px;
+  transform: translateY(-50%);
+
+  width: 180px;
+  height: 180px;
+
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 12px, transparent 12px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.35) 12px, transparent 12px);
+
+  background-size: 70px 70px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* .purple::before {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: 50px;
+  right: 50px;
+}
+
+.purple::after {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: #ffffff;
+  bottom: -20px;
+  left: -20px;
+}
+
+.orange::before {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -50px;
+  left: -50px;
+}
+
+.orange::after {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  background: #ffffff;
+  bottom: -30px;
+  right: -30px;
+}
+
+.peach::before {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -30px;
+  right: -30px;
+}
+
+.peach::after {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  background: #ffffff;
+  bottom: -20px;
+  left: -20px;
+} */
+
+
+/* =========================================================
+   12. LETTER DENSITY
+   ========================================================= */
+.density-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 100px;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  transition: background 0.25s ease;
+}
+
+.bar {
+  height: 6px;
+  background: #26263a;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #cfa9ff, #e2cfff);
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.hover-row:hover span {
+  color: var(--accent-purple);
+}
+
+.hover-row:hover .fill {
+  box-shadow: 0 0 10px rgba(207, 169, 255, 0.7);
+  filter: brightness(1.1);
+}
+
+/* =========================================================
+   13. SEE MORE
+   ========================================================= */
+.see-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.page-bg.dark .see-more:hover {
+  color: var(--accent-purple);
+  transform: translateX(2px);
+}
+
+.page-bg.light .see-more:hover {
+  color: #6b4eff;
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   14. ANIMATIONS
+   ========================================================= */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   15. RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: var(--fs-title-mobile);
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
