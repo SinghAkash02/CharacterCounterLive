@@ -47,7 +47,8 @@ function App() {
         {/* ================= TITLE ================= */}
         <h1 className="title">
           <span className="typing">
-            <TypingAnimation text="Analyze your text in real-time." />
+            {/* <TypingAnimation text="Analyze your text in real-time." /> */}
+            Analyze your text in real-time.
           </span>
           {/* <span className="fade">in real-time.</span> */}
         </h1>
